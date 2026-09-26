@@ -6,12 +6,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AutoDrive - Car Information</title>
+    <title>AutoDrive - Car Explorer</title>
 
     <!-- ================= INTERNAL CSS ================= -->
+
     <style>
 
-        /* ===== BASIC RESET ===== */
+        /* ===== RESET ===== */
 
         * {
             margin: 0;
@@ -25,12 +26,12 @@
 
         body {
             font-family: Arial, Helvetica, sans-serif;
-            background-color: #0b0f19;
+            background: #080b12;
             color: white;
         }
 
 
-        /* ===== NAVIGATION ===== */
+        /* ===== NAVBAR ===== */
 
         nav {
             position: sticky;
@@ -43,8 +44,9 @@
 
             padding: 20px 7%;
 
-            background-color: #111827;
-            border-bottom: 1px solid #374151;
+            background: rgba(8, 11, 18, 0.97);
+
+            border-bottom: 1px solid #252b38;
         }
 
         .logo {
@@ -67,6 +69,7 @@
             color: white;
             text-decoration: none;
             font-weight: bold;
+
             transition: 0.3s;
         }
 
@@ -75,25 +78,25 @@
         }
 
 
-        /* ===== HOME / HERO ===== */
+        /* ===== HERO ===== */
 
         .hero {
-            min-height: 90vh;
+            min-height: 75vh;
 
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
 
             text-align: center;
 
-            padding: 50px 20px;
+            padding: 60px 20px;
 
             background:
                 linear-gradient(
                     rgba(0, 0, 0, 0.65),
-                    rgba(0, 0, 0, 0.75)
+                    rgba(0, 0, 0, 0.8)
                 ),
-                url("https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1600&q=80");
+                url("https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1800&q=80");
 
             background-size: cover;
             background-position: center;
@@ -104,7 +107,7 @@
         }
 
         .hero h1 {
-            font-size: 60px;
+            font-size: 62px;
             margin-bottom: 20px;
         }
 
@@ -113,44 +116,48 @@
         }
 
         .hero p {
+            color: #d1d5db;
             font-size: 20px;
             line-height: 1.7;
-            color: #d1d5db;
             margin-bottom: 30px;
         }
 
         .hero-button {
             display: inline-block;
 
-            padding: 14px 28px;
+            padding: 15px 30px;
 
-            background-color: #ef4444;
+            background: #ef4444;
             color: white;
 
             text-decoration: none;
-            font-weight: bold;
 
-            border-radius: 7px;
+            border-radius: 8px;
+
+            font-weight: bold;
 
             transition: 0.3s;
         }
 
         .hero-button:hover {
-            background-color: #dc2626;
+            background: #dc2626;
             transform: translateY(-3px);
         }
 
 
-        /* ===== GENERAL SECTIONS ===== */
+        /* ===== GENERAL SECTION ===== */
 
         section {
             padding: 90px 7%;
+
             scroll-margin-top: 80px;
         }
 
         .section-title {
             text-align: center;
+
             font-size: 40px;
+
             margin-bottom: 15px;
         }
 
@@ -160,11 +167,13 @@
 
         .section-description {
             max-width: 650px;
+
             margin: 0 auto 45px;
 
             text-align: center;
 
             color: #9ca3af;
+
             line-height: 1.7;
         }
 
@@ -172,15 +181,115 @@
         /* ===== CARS SECTION ===== */
 
         #cars {
-            background-color: #111827;
+            background: #111827;
         }
+
+
+        /* ===== SEARCH AREA ===== */
+
+        .search-area {
+            max-width: 1000px;
+
+            margin: 0 auto 40px;
+
+            display: flex;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+
+            justify-content: center;
+        }
+
+        .search-box {
+            flex: 1;
+
+            min-width: 280px;
+
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+
+            padding: 16px 20px;
+
+            background: #1f2937;
+
+            color: white;
+
+            border: 1px solid #374151;
+
+            border-radius: 8px;
+
+            font-size: 16px;
+
+            outline: none;
+        }
+
+        .search-box input:focus {
+            border-color: #ef4444;
+        }
+
+
+        /* ===== CATEGORY BUTTONS ===== */
+
+        .categories {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 10px;
+
+            flex-wrap: wrap;
+
+            margin-bottom: 45px;
+        }
+
+        .category-btn {
+            padding: 11px 20px;
+
+            background: #1f2937;
+
+            color: #d1d5db;
+
+            border: 1px solid #374151;
+
+            border-radius: 25px;
+
+            cursor: pointer;
+
+            font-size: 14px;
+
+            transition: 0.3s;
+        }
+
+        .category-btn:hover {
+            border-color: #ef4444;
+
+            color: white;
+        }
+
+        .category-btn.active {
+            background: #ef4444;
+
+            color: white;
+
+            border-color: #ef4444;
+        }
+
+
+        /* ===== CAR GRID ===== */
 
         .car-container {
             max-width: 1200px;
+
             margin: auto;
 
             display: grid;
+
             grid-template-columns: repeat(3, 1fr);
+
             gap: 25px;
         }
 
@@ -188,29 +297,38 @@
         /* ===== CAR CARD ===== */
 
         .car-card {
-            overflow: hidden;
-
-            background-color: #1f2937;
+            background: #1f2937;
 
             border: 1px solid #374151;
+
             border-radius: 12px;
+
+            overflow: hidden;
 
             transition: 0.3s;
         }
 
         .car-card:hover {
             transform: translateY(-8px);
+
             border-color: #ef4444;
-            box-shadow: 0 15px 30px rgba(239, 68, 68, 0.15);
+
+            box-shadow:
+                0 15px 35px rgba(239, 68, 68, 0.15);
+        }
+
+        .car-card.hidden {
+            display: none;
         }
 
         .car-image {
             width: 100%;
+
             height: 220px;
 
-            display: block;
-
             object-fit: cover;
+
+            display: block;
         }
 
         .car-info {
@@ -219,28 +337,36 @@
 
         .car-info h3 {
             font-size: 24px;
+
             margin-bottom: 8px;
         }
 
         .car-type {
             color: #ef4444;
+
             font-size: 13px;
+
             font-weight: bold;
+
             margin-bottom: 15px;
         }
 
         .car-description {
             color: #9ca3af;
+
             line-height: 1.6;
+
             margin-bottom: 20px;
         }
 
 
-        /* ===== CAR SPECIFICATIONS ===== */
+        /* ===== SPECIFICATIONS ===== */
 
         .specs {
             display: grid;
+
             grid-template-columns: 1fr 1fr;
+
             gap: 10px;
 
             margin-bottom: 20px;
@@ -249,13 +375,16 @@
         .spec {
             padding: 12px;
 
-            background-color: #111827;
+            background: #111827;
+
             border-radius: 6px;
         }
 
         .spec strong {
             display: block;
+
             color: white;
+
             margin-bottom: 4px;
         }
 
@@ -265,26 +394,45 @@
 
         .price {
             color: #ef4444;
+
             font-size: 21px;
+
             font-weight: bold;
         }
 
 
-        /* ===== ABOUT SECTION ===== */
+        /* ===== NO RESULTS ===== */
+
+        #noResults {
+            display: none;
+
+            text-align: center;
+
+            color: #9ca3af;
+
+            padding: 50px;
+
+            font-size: 18px;
+        }
+
+
+        /* ===== ABOUT ===== */
 
         #about {
-            background-color: #0b0f19;
+            background: #080b12;
         }
 
         .about-box {
             max-width: 850px;
+
             margin: auto;
 
             padding: 40px;
 
-            background-color: #1f2937;
+            background: #1f2937;
 
             border: 1px solid #374151;
+
             border-radius: 12px;
 
             text-align: center;
@@ -292,23 +440,28 @@
 
         .about-box p {
             color: #d1d5db;
+
             line-height: 1.8;
+
             font-size: 17px;
         }
 
 
-        /* ===== CONTACT SECTION ===== */
+        /* ===== CONTACT ===== */
 
         #contact {
-            background-color: #111827;
+            background: #111827;
         }
 
         .contact-form {
             max-width: 600px;
+
             margin: auto;
 
             display: flex;
+
             flex-direction: column;
+
             gap: 15px;
         }
 
@@ -318,13 +471,16 @@
 
             padding: 15px;
 
-            background-color: #1f2937;
+            background: #1f2937;
+
             color: white;
 
             border: 1px solid #374151;
+
             border-radius: 7px;
 
             font-size: 16px;
+
             font-family: Arial, sans-serif;
 
             outline: none;
@@ -335,28 +491,28 @@
             border-color: #ef4444;
         }
 
-        .contact-form textarea {
-            resize: vertical;
-        }
-
         .contact-form button {
             padding: 15px;
 
-            background-color: #ef4444;
+            background: #ef4444;
+
             color: white;
 
             border: none;
+
             border-radius: 7px;
 
             font-size: 16px;
+
             font-weight: bold;
 
             cursor: pointer;
+
             transition: 0.3s;
         }
 
         .contact-form button:hover {
-            background-color: #dc2626;
+            background: #dc2626;
         }
 
 
@@ -365,7 +521,7 @@
         footer {
             padding: 25px;
 
-            background-color: #030712;
+            background: #030712;
 
             text-align: center;
 
@@ -390,17 +546,20 @@
 
             nav {
                 flex-direction: column;
+
                 gap: 15px;
             }
 
             .nav-links {
                 gap: 15px;
+
                 flex-wrap: wrap;
+
                 justify-content: center;
             }
 
             .hero h1 {
-                font-size: 40px;
+                font-size: 42px;
             }
 
             .hero p {
@@ -422,6 +581,7 @@
         }
 
     </style>
+
 </head>
 
 
@@ -466,17 +626,17 @@
         <div class="hero-content">
 
             <h1>
-                Discover Your
+                Find Your
                 <span>Dream Car</span>
             </h1>
 
             <p>
-                Explore amazing cars, compare their specifications,
-                and discover what makes each vehicle special.
+                Search through our collection of sports cars,
+                luxury cars, sedans and supercars.
             </p>
 
             <a href="#cars" class="hero-button">
-                Explore Cars
+                Browse Cars
             </a>
 
         </div>
@@ -489,26 +649,87 @@
     <section id="cars">
 
         <h2 class="section-title">
-            Featured <span>Cars</span>
+            Explore <span>Cars</span>
         </h2>
 
         <p class="section-description">
-            Explore our collection of popular performance,
-            luxury and sports cars.
+            Search for a car or select a category to find the
+            vehicle you're interested in.
         </p>
 
 
-        <div class="car-container">
+        <!-- SEARCH -->
+
+        <div class="search-area">
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="🔍 Search cars..."
+                    onkeyup="searchCars()"
+                >
+
+            </div>
+
+        </div>
 
 
-            <!-- CAR 1 -->
+        <!-- CATEGORIES -->
 
-            <div class="car-card">
+        <div class="categories">
+
+            <button
+                class="category-btn active"
+                onclick="filterCars('all', this)">
+                All
+            </button>
+
+            <button
+                class="category-btn"
+                onclick="filterCars('sports', this)">
+                Sports
+            </button>
+
+            <button
+                class="category-btn"
+                onclick="filterCars('luxury', this)">
+                Luxury
+            </button>
+
+            <button
+                class="category-btn"
+                onclick="filterCars('sedan', this)">
+                Sedan
+            </button>
+
+            <button
+                class="category-btn"
+                onclick="filterCars('supercar', this)">
+                Supercar
+            </button>
+
+        </div>
+
+
+        <!-- CAR CARDS -->
+
+        <div class="car-container" id="carContainer">
+
+
+            <!-- PORSCHE -->
+
+            <div
+                class="car-card"
+                data-category="sports"
+                data-name="porsche 911"
+            >
 
                 <img
                     class="car-image"
                     src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=900&q=80"
-                    alt="Porsche sports car"
+                    alt="Porsche 911"
                 >
 
                 <div class="car-info">
@@ -520,8 +741,8 @@
                     </div>
 
                     <p class="car-description">
-                        A legendary sports car known for excellent
-                        performance, handling and design.
+                        A legendary sports car known for its
+                        performance and iconic design.
                     </p>
 
                     <div class="specs">
@@ -557,14 +778,18 @@
             </div>
 
 
-            <!-- CAR 2 -->
+            <!-- BMW M4 -->
 
-            <div class="car-card">
+            <div
+                class="car-card"
+                data-category="sports"
+                data-name="bmw m4"
+            >
 
                 <img
                     class="car-image"
                     src="https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&w=900&q=80"
-                    alt="BMW sports car"
+                    alt="BMW M4"
                 >
 
                 <div class="car-info">
@@ -572,12 +797,12 @@
                     <h3>BMW M4</h3>
 
                     <div class="car-type">
-                        PERFORMANCE COUPE
+                        SPORTS CAR
                     </div>
 
                     <p class="car-description">
-                        A powerful performance coupe that combines
-                        everyday comfort with exciting performance.
+                        A powerful performance coupe with
+                        excellent everyday usability.
                     </p>
 
                     <div class="specs">
@@ -613,14 +838,18 @@
             </div>
 
 
-            <!-- CAR 3 -->
+            <!-- MERCEDES AMG -->
 
-            <div class="car-card">
+            <div
+                class="car-card"
+                data-category="luxury"
+                data-name="mercedes amg gt"
+            >
 
                 <img
                     class="car-image"
                     src="https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=900&q=80"
-                    alt="Luxury sports car"
+                    alt="Mercedes AMG GT"
                 >
 
                 <div class="car-info">
@@ -628,12 +857,12 @@
                     <h3>Mercedes-AMG GT</h3>
 
                     <div class="car-type">
-                        LUXURY SPORTS CAR
+                        LUXURY
                     </div>
 
                     <p class="car-description">
-                        A luxury performance car combining elegant
-                        styling with impressive power.
+                        A luxury performance car combining
+                        comfort, technology and power.
                     </p>
 
                     <div class="specs">
@@ -669,27 +898,31 @@
             </div>
 
 
-            <!-- CAR 4 -->
+            <!-- MERCEDES C CLASS -->
 
-            <div class="car-card">
+            <div
+                class="car-card"
+                data-category="sedan"
+                data-name="mercedes c class"
+            >
 
                 <img
                     class="car-image"
                     src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=900&q=80"
-                    alt="Mercedes Benz car"
+                    alt="Mercedes C Class"
                 >
 
                 <div class="car-info">
 
-                    <h3>Mercedes-Benz C-Class</h3>
+                    <h3>Mercedes C-Class</h3>
 
                     <div class="car-type">
-                        LUXURY SEDAN
+                        SEDAN
                     </div>
 
                     <p class="car-description">
-                        A refined sedan offering comfort, technology
-                        and premium styling.
+                        A refined luxury sedan offering comfort,
+                        technology and premium styling.
                     </p>
 
                     <div class="specs">
@@ -725,14 +958,18 @@
             </div>
 
 
-            <!-- CAR 5 -->
+            <!-- BMW M3 -->
 
-            <div class="car-card">
+            <div
+                class="car-card"
+                data-category="sedan"
+                data-name="bmw m3"
+            >
 
                 <img
                     class="car-image"
                     src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=900&q=80"
-                    alt="BMW M3 car"
+                    alt="BMW M3"
                 >
 
                 <div class="car-info">
@@ -740,12 +977,12 @@
                     <h3>BMW M3</h3>
 
                     <div class="car-type">
-                        PERFORMANCE SEDAN
+                        SEDAN
                     </div>
 
                     <p class="car-description">
-                        A high-performance sedan combining practicality
-                        with exciting driving performance.
+                        A high-performance sedan combining
+                        practicality and performance.
                     </p>
 
                     <div class="specs">
@@ -781,14 +1018,18 @@
             </div>
 
 
-            <!-- CAR 6 -->
+            <!-- LAMBORGHINI -->
 
-            <div class="car-card">
+            <div
+                class="car-card"
+                data-category="supercar"
+                data-name="lamborghini huracan"
+            >
 
                 <img
                     class="car-image"
                     src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=900&q=80"
-                    alt="Lamborghini sports car"
+                    alt="Lamborghini Huracan"
                 >
 
                 <div class="car-info">
@@ -800,8 +1041,8 @@
                     </div>
 
                     <p class="car-description">
-                        An exotic supercar known for dramatic styling
-                        and incredible performance.
+                        An exotic supercar famous for dramatic
+                        styling and incredible performance.
                     </p>
 
                     <div class="specs">
@@ -836,6 +1077,14 @@
 
             </div>
 
+
+        </div>
+
+
+        <!-- NO RESULTS MESSAGE -->
+
+        <div id="noResults">
+            No cars found. Try another search or category.
         </div>
 
     </section>
@@ -850,16 +1099,16 @@
         </h2>
 
         <p class="section-description">
-            A simple website for car enthusiasts.
+            A website created for people who love cars.
         </p>
 
         <div class="about-box">
 
             <p>
-                AutoDrive is a fictional car information website
-                created for people who love cars. Explore different
-                vehicles, learn about their specifications and
-                discover some of the world's most exciting cars.
+                AutoDrive allows car enthusiasts to explore different
+                vehicles, search for specific cars and filter vehicles
+                by category. Discover sports cars, luxury vehicles,
+                sedans and supercars all in one place.
             </p>
 
         </div>
@@ -876,27 +1125,24 @@
         </h2>
 
         <p class="section-description">
-            Have a question? Send us a message below.
+            Have a question about a car? Send us a message.
         </p>
 
-        <form class="contact-form" action="#" method="post">
+        <form class="contact-form">
 
             <input
                 type="text"
-                name="name"
                 placeholder="Your Name"
                 required
             >
 
             <input
                 type="email"
-                name="email"
                 placeholder="Your Email"
                 required
             >
 
             <textarea
-                name="message"
                 rows="6"
                 placeholder="Your Message"
                 required
@@ -922,7 +1168,116 @@
     </footer>
 
 
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        let currentCategory = "all";
+
+
+        /* ===== SEARCH CARS ===== */
+
+        function searchCars() {
+
+            const searchInput =
+                document.getElementById("searchInput");
+
+            const searchText =
+                searchInput.value.toLowerCase().trim();
+
+            const cars =
+                document.querySelectorAll(".car-card");
+
+            let visibleCars = 0;
+
+
+            cars.forEach(function(car) {
+
+                const carName =
+                    car.getAttribute("data-name").toLowerCase();
+
+                const carCategory =
+                    car.getAttribute("data-category").toLowerCase();
+
+
+                const matchesSearch =
+                    carName.includes(searchText);
+
+                const matchesCategory =
+                    currentCategory === "all" ||
+                    carCategory === currentCategory;
+
+
+                if (matchesSearch && matchesCategory) {
+
+                    car.classList.remove("hidden");
+
+                    visibleCars++;
+
+                } else {
+
+                    car.classList.add("hidden");
+
+                }
+
+            });
+
+
+            showNoResults(visibleCars);
+
+        }
+
+
+        /* ===== FILTER CARS ===== */
+
+        function filterCars(category, button) {
+
+            currentCategory = category;
+
+
+            const buttons =
+                document.querySelectorAll(".category-btn");
+
+
+            buttons.forEach(function(btn) {
+
+                btn.classList.remove("active");
+
+            });
+
+
+            button.classList.add("active");
+
+
+            searchCars();
+
+        }
+
+
+        /* ===== NO RESULTS ===== */
+
+        function showNoResults(numberOfCars) {
+
+            const noResults =
+                document.getElementById("noResults");
+
+
+            if (numberOfCars === 0) {
+
+                noResults.style.display = "block";
+
+            } else {
+
+                noResults.style.display = "none";
+
+            }
+
+        }
+
+    </script>
+
+
 </body>
+
 </html>
 ```
-
